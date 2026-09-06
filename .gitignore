@@ -1,0 +1,40 @@
+# エディタ・ツールの設定
+.idea/
+.vscode/
+*.iml
+
+# インストールしたプラグインの実体。他人のコードなので配布しない
+.claude/
+
+# Python の中間生成物
+__pycache__/
+*.py[cod]
+
+# 退避・検証用（履歴には残さない）
+_backup/
+.export-check/
+design/.archive-v2/
+
+# 生成されたモックのキャンバス。design/*.dc.html から再生成できるうえ、
+# 中身の大半が Claude Design のエディタなので配布しない
+design/*-mockups.html
+
+# 機密。モバイル配布で今後増える分を先に塞いでおく
+.env
+.env.*
+!.env.example
+*.p8
+*.p12
+*.pem
+*.key
+*.keystore
+*.jks
+*.mobileprovision
+*.cer
+credentials.json
+google-services.json
+GoogleService-Info.plist
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+  <style>
+    body { margin: 0; font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #9A9AA2; } a:hover { color: #C6C6CC; }
+  </style>
+</helmet>
+<div style="width: 390px; height: 844px; overflow: hidden; background: #0A0A0B; color: #E8E8EA; position: relative; display: flex; flex-direction: column;">
+
+  <div style="height: 54px; flex-shrink: 0;"></div>
+
+  <div style="display: flex; align-items: center; padding: 0 12px; flex-shrink: 0; height: 44px;">
+    <div style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8A8A92" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </div>
+    <div style="font-size: 16px; font-weight: 500; letter-spacing: 0.06em; margin-left: 4px;">消し方</div>
+  </div>
+
+  <div style="flex-grow: 1; padding: 22px 20px 0 20px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;">
+
+    <div style="background: #121012; border: 1px solid #3A2A20; border-radius: 6px; padding: 13px; display: flex; align-items: center; gap: 14px;">
+      <svg width="64" height="84" viewBox="0 0 64 84" fill="none" style="flex-shrink: 0;">
+        <rect x="0" y="0" width="64" height="84" fill="#FFFFFF"></rect>
+        <path d="M9 15h46M9 24h46M9 33h32" stroke="#D6D6D6" stroke-width="1.5" stroke-linecap="round"></path>
+        <path d="M0 54c8 5 13-5 20 0s13 7 20 2 10-7 17-2 7 3 7 3v27H0z" fill="#13100D"></path>
+        <path d="M0 54c8 5 13-5 20 0s13 7 20 2 10-7 17-2 7 3 7 3" stroke="#C4551E" stroke-width="2.2" stroke-linecap="round"></path>
+        <circle cx="22" cy="44" r="1.2" fill="#D89A5A"></circle>
+      </svg>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="font-size: 15px; font-weight: 500; color: #E0C6AE;">燃やす</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #8A6242; border: 1px solid #3A2A20; border-radius: 3px; padding: 2px 5px; letter-spacing: 0.08em;">既定</div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.75; color: #7A6754; text-wrap: pretty;">紙の下から火が回り、離すと燃え上がって灰になる。</div>
+      </div>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C08055" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+        <path d="M5 12.5l4.6 4.6L19 7.4"></path>
+      </svg>
+    </div>
+
+    <div style="background: #111113; border: 1px solid #1D1D22; border-radius: 6px; padding: 13px; display: flex; align-items: center; gap: 14px;">
+      <svg width="64" height="84" viewBox="0 0 64 84" fill="none" style="flex-shrink: 0;">
+        <rect x="0" y="0" width="64" height="84" fill="#FFFFFF"></rect>
+        <path d="M9 15h46M9 24h46M9 33h32" stroke="#D6D6D6" stroke-width="1.5" stroke-linecap="round"></path>
+        <path d="M13 28v20M27 30v22M41 28v18M53 32v15" stroke="#8A8A92" stroke-width="1.8" stroke-linecap="round" opacity="0.8"></path>
+        <path d="M0 62c9-5 16 4 23 0s14-5 21-1 13 4 20 1v22H0z" fill="#4A4A52"></path>
+      </svg>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 15px; font-weight: 500; color: #C6C6CC;">溶かす</div>
+        <div style="font-size: 12px; line-height: 1.75; color: #62626A; text-wrap: pretty;">文字がインクになって溶け落ち、下に溜まって蒸発する。</div>
+      </div>
+    </div>
+
+    <div style="background: #111113; border: 1px solid #1D1D22; border-radius: 6px; padding: 13px; display: flex; align-items: center; gap: 14px;">
+      <svg width="64" height="84" viewBox="0 0 64 84" fill="none" style="flex-shrink: 0;">
+        <path d="M0 0h30l-5 41 7 43H0z" fill="#FFFFFF"></path>
+        <path d="M34 0h30v84H36l5-43z" fill="#F4F4F4"></path>
+        <path d="M7 15h17M40 15h17M7 24h15M42 24h15" stroke="#D6D6D6" stroke-width="1.5" stroke-linecap="round"></path>
+        <path d="M30 0l-5 41 7 43" stroke="#9A9AA2" stroke-width="1.1"></path>
+        <path d="M34 0l7 41-5 43" stroke="#9A9AA2" stroke-width="1.1"></path>
+      </svg>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 15px; font-weight: 500; color: #C6C6CC;">破る</div>
+        <div style="font-size: 12px; line-height: 1.75; color: #62626A; text-wrap: pretty;">紙を真っ二つに引き裂き、破片が画面の外まで飛び散る。</div>
+      </div>
+    </div>
+
+    <div style="background: #111113; border: 1px solid #1D1D22; border-radius: 6px; padding: 13px; display: flex; align-items: center; gap: 14px;">
+      <svg width="64" height="84" viewBox="0 0 64 84" fill="none" style="flex-shrink: 0;">
+        <rect x="0" y="0" width="64" height="84" fill="#FFFFFF"></rect>
+        <path d="M9 15h46M9 24h46M9 33h32" stroke="#D6D6D6" stroke-width="1.5" stroke-linecap="round"></path>
+        <path d="M0 48c11-7 20 5 30 0s23-5 34 2v34H0z" fill="#3E5866" opacity="0.9"></path>
+        <path d="M0 59c12-5 21 6 32 1s21-4 32 3" stroke="#8FB4C6" stroke-width="1.4" opacity="0.75"></path>
+        <path d="M0 71c12-5 21 6 32 1s21-4 32 3" stroke="#8FB4C6" stroke-width="1.2" opacity="0.5"></path>
+      </svg>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 15px; font-weight: 500; color: #C6C6CC;">流す</div>
+        <div style="font-size: 12px; line-height: 1.75; color: #62626A; text-wrap: pretty;">水が押し寄せて文字がにじみ、渦を巻いて流れ去る。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="flex-shrink: 0; padding: 22px 22px 34px 22px;">
+    <div style="font-size: 11.5px; line-height: 1.9; color: #4E4E56; text-wrap: pretty;">消し方が変わっても、消える結果は同じです。長押しで溜めて、指を離すと消える操作も共通です。</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
