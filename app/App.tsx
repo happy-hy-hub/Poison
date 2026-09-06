@@ -7,6 +7,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { SettingKeys, readBool } from "./src/db/database";
+import { installWebStyles } from "./src/webStyles";
 import type { RootStackParamList } from "./src/navigation";
 import { ComposeScreen } from "./src/screens/ComposeScreen";
 import { DetailScreen } from "./src/screens/DetailScreen";
@@ -15,6 +16,9 @@ import { ListScreen } from "./src/screens/ListScreen";
 import { LockScreen } from "./src/screens/LockScreen";
 import { SettingsScreen } from "./src/screens/SettingsScreen";
 import { C } from "./src/theme";
+
+// iOS Safari の長押しメニューが消去操作と衝突するため、Web では選択を切る。
+installWebStyles();
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
