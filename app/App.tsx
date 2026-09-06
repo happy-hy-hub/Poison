@@ -2,7 +2,7 @@ import { DarkTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AppState, type AppStateStatus } from "react-native";
+import { AppState, Platform, type AppStateStatus } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -29,6 +29,11 @@ export default function App() {
   const appState = useRef<AppStateStatus>(AppState.currentState);
 
   useEffect(() => {
+    // Web では生体認証もセキュアストレージも使えないので、ロックは提供しない。
+    if (Platform.OS === "web") {
+      setLockEnabled(false);
+      return;
+    }
     void readBool(SettingKeys.lockEnabled, false).then(setLockEnabled);
   }, []);
 

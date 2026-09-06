@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import * as Haptics from "expo-haptics";
+import { ImpactStyle, impact, impactAwait, selection } from "../haptics";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -115,7 +115,7 @@ export const PurgeSurface: React.FC<Props> = ({
   const enterCritical = () => {
     clearHaptics();
     if (hapticsEnabled && !reduceMotion) {
-      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+      impact(ImpactStyle.Heavy);
     }
     setPhase("critical");
   };
@@ -193,15 +193,12 @@ export const PurgeSurface: React.FC<Props> = ({
       const t = progressRef.current;
       const profile = effect.manifest.haptic;
       if (profile === "gentle") {
-        void Haptics.selectionAsync();
+        selection();
       } else if (profile === "standard") {
-        void (t > 0.6
-          ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-          : Haptics.selectionAsync());
+        if (t > 0.6) impact(ImpactStyle.Light);
+        else selection();
       } else {
-        void Haptics.impactAsync(
-          t > 0.4 ? Haptics.ImpactFeedbackStyle.Medium : Haptics.ImpactFeedbackStyle.Light,
-        );
+        impact(t > 0.4 ? ImpactStyle.Medium : ImpactStyle.Light);
       }
       const interval = Math.max(24, Math.min(90, Math.round(90 - 66 * t)));
       hapticTimer.current = setTimeout(tick, interval);
@@ -212,7 +209,7 @@ export const PurgeSurface: React.FC<Props> = ({
 
   const releaseHaptics = async () => {
     for (let i = 0; i < 3; i++) {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+      await impactAwait(ImpactStyle.Heavy);
       await new Promise((r) => setTimeout(r, 70));
     }
   };

@@ -5,7 +5,7 @@ import React, { useCallback, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { AppBar, Group, RowDivider, SectionLabel, SwitchRow, ValueRow } from "../components/ui";
-import { SettingKeys, isExpoGo, readBool, readSetting, writeBool } from "../db/database";
+import { SettingKeys, isExpoGo, isWeb, readBool, readSetting, writeBool } from "../db/database";
 import type { RootStackParamList } from "../navigation";
 import { resolveEffect } from "../purge/registry";
 import { C, F, INSETS, mono } from "../theme";
@@ -54,18 +54,21 @@ export const SettingsScreen: React.FC<Props> = ({ navigation }) => {
       <AppBar title="設定" />
 
       <ScrollView contentContainerStyle={styles.body}>
-        <SectionLabel>ロック</SectionLabel>
-        <Group>
-          <SwitchRow
-            label="アプリを開くときにロック"
-            value={lock}
-            onChange={toggle(SettingKeys.lockEnabled, setLock)}
-          />
-          <RowDivider />
-          <ValueRow label="ロックの方法" value="生体認証 ／ PIN" enabled={false} />
-        </Group>
-
-        <View style={styles.gap} />
+        {!isWeb && (
+          <>
+            <SectionLabel>ロック</SectionLabel>
+            <Group>
+              <SwitchRow
+                label="アプリを開くときにロック"
+                value={lock}
+                onChange={toggle(SettingKeys.lockEnabled, setLock)}
+              />
+              <RowDivider />
+              <ValueRow label="ロックの方法" value="生体認証 ／ PIN" enabled={false} />
+            </Group>
+            <View style={styles.gap} />
+          </>
+        )}
 
         <SectionLabel>消し方</SectionLabel>
         <Group>
@@ -98,14 +101,18 @@ export const SettingsScreen: React.FC<Props> = ({ navigation }) => {
         <View style={styles.note}>
           <Ionicons name="shield-outline" size={17} color="#55555C" style={styles.noteIcon} />
           <Text style={styles.noteText}>
-            このアプリは通信しません。書いた内容は端末の中だけに保存され、外に出ることはありません。
+            {isWeb
+              ? "書いた内容はこの端末のブラウザにだけ保存され、どこにも送信されません。ページ自体はインターネットから読み込まれます。"
+              : "このアプリは通信しません。書いた内容は端末の中だけに保存され、外に出ることはありません。"}
           </Text>
         </View>
 
-        {isExpoGo && (
+        {(isExpoGo || isWeb) && (
           <View style={styles.warn}>
             <Text style={styles.warnText}>
-              いまは Expo Go で動いています。この環境では保存内容が暗号化されません。配布前に開発ビルドで確認してください。
+              {isWeb
+                ? "この版では保存内容が暗号化されず、振動も鳴りません。ブラウザのサイトデータを消すと書いたものも消えます。"
+                : "いまは Expo Go で動いています。この環境では保存内容が暗号化されません。配布前に開発ビルドで確認してください。"}
             </Text>
           </View>
         )}

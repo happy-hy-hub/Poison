@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
-import * as Haptics from "expo-haptics";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+
+import { error as hapticError } from "../haptics";
 
 import { C, F, mono } from "../theme";
 
@@ -23,6 +24,7 @@ export const LockScreen: React.FC<{ onUnlocked: () => void }> = ({ onUnlocked })
   const storedPin = useRef<string | null>(null);
 
   const tryBiometrics = useCallback(async () => {
+    if (Platform.OS === "web") return; // Web では生体認証が使えない
     try {
       const hasHardware = await LocalAuthentication.hasHardwareAsync();
       const enrolled = await LocalAuthentication.isEnrolledAsync();
@@ -40,7 +42,11 @@ export const LockScreen: React.FC<{ onUnlocked: () => void }> = ({ onUnlocked })
 
   useEffect(() => {
     void (async () => {
-      storedPin.current = await SecureStore.getItemAsync(PIN_KEY);
+      try {
+        storedPin.current = await SecureStore.getItemAsync(PIN_KEY);
+      } catch {
+        storedPin.current = null; // Web では SecureStore が使えない
+      }
       await tryBiometrics();
     })();
   }, [tryBiometrics]);
@@ -54,7 +60,7 @@ export const LockScreen: React.FC<{ onUnlocked: () => void }> = ({ onUnlocked })
       if (storedPin.current !== null && next === storedPin.current) {
         onUnlocked();
       } else {
-        void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+        hapticError();
         setTimeout(() => setEntered(""), 400);
       }
     }

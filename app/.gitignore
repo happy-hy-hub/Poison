@@ -39,3 +39,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+dist/
+
+# ビルド時に node_modules から取り込む（8MB）
+public/canvaskit.wasm
